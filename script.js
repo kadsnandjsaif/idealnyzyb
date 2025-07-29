@@ -53,7 +53,7 @@ function createHeader() {
                 </div>
                 
                 <nav class="header-nav">
-                    <a href="mainTab.html" class="nav-link">Главная</a>
+                    <a href="index.html" class="nav-link">Главная</a>
                     <a href="about.html" class="nav-link">О клинике</a>
                     <a href="specialists.html" class="nav-link">Специалисты</a>
                     <a href="pricing.html" class="nav-link">Цены</a>
@@ -73,7 +73,7 @@ function createHeader() {
                 <div class="mobile-menu" id="mobileMenu">
                     <div class="mobile-menu-content">
                         <nav class="header-nav">
-                            <a href="mainTab.html" class="nav-link mobile-nav-link">Главная</a>
+                            <a href="index.html" class="nav-link mobile-nav-link">Главная</a>
                             <a href="about.html" class="nav-link mobile-nav-link">О клинике</a>
                             <a href="specialists.html" class="nav-link mobile-nav-link">Специалисты</a>
                             <a href="pricing.html" class="nav-link mobile-nav-link">Цены</a>
@@ -131,7 +131,7 @@ function createFooter() {
                                         <img src="footer/logo-footer.svg" alt="Логотип">
                                     </div>
                                     <nav class="footer-nav">
-                                        <a href="mainTab.html" class="footer-link">Главная</a>
+                                        <a href="index.html" class="footer-link">Главная</a>
                                         <a href="about.html" class="footer-link">О клинике</a>
                                         <a href="specialists.html" class="footer-link">Специалисты</a>
                                         <a href="pricing.html" class="footer-link">Цены</a>
@@ -237,7 +237,7 @@ function createDeveloperNavigation() {
                     <div class="dev-nav-section">
                         <h4>Страницы сайта:</h4>
                         <div class="dev-nav-links">
-                            <a href="mainTab.html" class="dev-nav-link">🏠 Главная</a>
+                            <a href="index.html" class="dev-nav-link">🏠 Главная</a>
                             <a href="about.html" class="dev-nav-link">🏢 О клинике</a>
                             <a href="specialists.html" class="dev-nav-link">👨‍⚕️ Специалисты</a>
                             <a href="pricing.html" class="dev-nav-link">💰 Цены</a>
