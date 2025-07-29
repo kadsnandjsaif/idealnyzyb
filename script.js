@@ -65,6 +65,65 @@ function initializeSearch() {
     let searchResults = [];
     let currentHighlight = null;
     let originalNodes = new Map(); // Сохраняем оригинальные узлы
+    let pageState = {
+        hiddenElements: new Map(), // Сохраняем скрытые элементы
+        originalStyles: new Map(), // Сохраняем оригинальные стили
+        searchActive: false
+    };
+    
+    // Сохранить состояние страницы перед поиском
+    function savePageState() {
+        if (pageState.searchActive) return; // Уже сохранено
+        
+        // Сохраняем все скрытые элементы
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            const computedStyle = window.getComputedStyle(element);
+            const opacity = computedStyle.opacity;
+            const visibility = computedStyle.visibility;
+            const display = computedStyle.display;
+            
+            // Если элемент скрыт
+            if (opacity === '0' || visibility === 'hidden' || display === 'none') {
+                pageState.hiddenElements.set(element, {
+                    opacity: element.style.opacity,
+                    visibility: element.style.visibility,
+                    display: element.style.display,
+                    computedOpacity: opacity,
+                    computedVisibility: visibility,
+                    computedDisplay: display
+                });
+                
+                // Показываем элемент для поиска
+                element.style.opacity = '1';
+                element.style.visibility = 'visible';
+                if (display === 'none') {
+                    element.style.display = 'block';
+                }
+            }
+        });
+        
+        pageState.searchActive = true;
+    }
+    
+    // Восстановить состояние страницы после поиска
+    function restorePageState() {
+        if (!pageState.searchActive) return;
+        
+        // Восстанавливаем все скрытые элементы
+        pageState.hiddenElements.forEach((originalStyles, element) => {
+            if (element && element.parentNode) {
+                element.style.opacity = originalStyles.opacity || '';
+                element.style.visibility = originalStyles.visibility || '';
+                element.style.display = originalStyles.display || '';
+            }
+        });
+        
+        // Очищаем сохраненные данные
+        pageState.hiddenElements.clear();
+        pageState.originalStyles.clear();
+        pageState.searchActive = false;
+    }
     
     // Функция поиска текста на странице
     function performSearch() {
@@ -81,6 +140,9 @@ function initializeSearch() {
             return;
         }
         
+        // Сохраняем состояние страницы перед поиском
+        savePageState();
+        
         // Очищаем предыдущие выделения
         clearHighlights();
         
@@ -93,6 +155,8 @@ function initializeSearch() {
             showSearchMessage(`Найдено ${searchResults.length} вхождений`, 'success');
         } else {
             showSearchMessage('Текст не найден на странице', 'error');
+            // Если ничего не найдено, восстанавливаем состояние
+            restorePageState();
         }
     }
     
@@ -104,17 +168,32 @@ function initializeSearch() {
             NodeFilter.SHOW_TEXT,
             {
                 acceptNode: function(node) {
-                    // Исключаем скрытые элементы и элементы формы
+                    // Исключаем элементы, которые не должны участвовать в поиске
                     const parent = node.parentElement;
-                    if (!parent || 
-                        parent.style.display === 'none' || 
-                        parent.style.visibility === 'hidden' ||
-                        parent.tagName === 'SCRIPT' ||
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    
+                    // Исключаем служебные элементы
+                    if (parent.tagName === 'SCRIPT' ||
                         parent.tagName === 'STYLE' ||
+                        parent.tagName === 'NOSCRIPT' ||
+                        parent.tagName === 'META' ||
+                        parent.tagName === 'LINK' ||
                         parent.tagName === 'INPUT' ||
-                        parent.tagName === 'TEXTAREA') {
+                        parent.tagName === 'TEXTAREA' ||
+                        parent.tagName === 'SELECT' ||
+                        parent.tagName === 'BUTTON' ||
+                        parent.classList.contains('search-highlight') ||
+                        parent.classList.contains('search-highlight-wrapper') ||
+                        parent.id === 'searchCounter' ||
+                        parent.id === 'searchMessage') {
                         return NodeFilter.FILTER_REJECT;
                     }
+                    
+                    // Исключаем пустые или только пробельные узлы
+                    if (!node.textContent.trim()) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    
                     return NodeFilter.FILTER_ACCEPT;
                 }
             }
@@ -349,6 +428,9 @@ function initializeSearch() {
         }
         
         currentHighlight = null;
+        
+        // Восстанавливаем состояние страницы
+        restorePageState();
     }
     
     // Переход к следующему результату
@@ -432,6 +514,12 @@ function initializeSearch() {
     
     // Обработчики событий
     searchInput.addEventListener('input', function() {
+        // Если поле пустое, очищаем поиск
+        if (this.value.trim() === '') {
+            clearHighlights();
+            return;
+        }
+        
         // Очищаем подсветку при изменении текста
         clearHighlights();
     });
@@ -468,6 +556,13 @@ function initializeSearch() {
     document.addEventListener('click', function(e) {
         if (!searchInput.contains(e.target) && !searchBtn.contains(e.target)) {
             // Не очищаем сразу, даем пользователю время на навигацию
+        }
+    });
+    
+    // Очистка при потере фокуса (если поле пустое)
+    searchInput.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+            clearHighlights();
         }
     });
 }
