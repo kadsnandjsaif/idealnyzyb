@@ -51,7 +51,7 @@ function initializeQuoteAnimation() {
 function initializeSearch() {
     console.log('Инициализация функции поиска по тексту на странице...');
     const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.querySelector('.search-input span');
+    const searchBtn = document.querySelector('.header-search span');
     
     console.log('searchInput найден:', !!searchInput);
     console.log('searchBtn найден:', !!searchBtn);
@@ -174,12 +174,13 @@ function initializeSearch() {
         
         // Показываем счетчик результатов
         showResultCounter();
+        
+        // Обновляем счетчик при навигации
+        updateResultCounter();
     }
     
-    // Показать счетчик результатов
+    // Показать счетчик результатов с кнопками навигации
     function showResultCounter() {
-        if (searchResults.length <= 1) return;
-        
         // Удаляем существующий счетчик
         const existingCounter = document.getElementById('searchCounter');
         if (existingCounter) {
@@ -194,23 +195,110 @@ function initializeSearch() {
             right: 20px;
             background: #007bff;
             color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 15px 20px;
+            border-radius: 25px;
             font-size: 14px;
             font-weight: bold;
             z-index: 10001;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
         `;
-        counter.textContent = `${currentSearchIndex + 1} из ${searchResults.length}`;
+        
+        // Кнопка "Предыдущий"
+        const prevBtn = document.createElement('button');
+        prevBtn.innerHTML = '&#8249;';
+        prevBtn.style.cssText = `
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        `;
+        prevBtn.onmouseover = () => prevBtn.style.background = 'rgba(255,255,255,0.3)';
+        prevBtn.onmouseout = () => prevBtn.style.background = 'rgba(255,255,255,0.2)';
+        prevBtn.onclick = () => previousResult();
+        
+        // Счетчик
+        const counterText = document.createElement('span');
+        counterText.textContent = `${currentSearchIndex + 1} из ${searchResults.length}`;
+        counterText.style.flex = '1';
+        counterText.style.textAlign = 'center';
+        
+        // Кнопка "Следующий"
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '&#8250;';
+        nextBtn.style.cssText = `
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        `;
+        nextBtn.onmouseover = () => nextBtn.style.background = 'rgba(255,255,255,0.3)';
+        nextBtn.onmouseout = () => nextBtn.style.background = 'rgba(255,255,255,0.2)';
+        nextBtn.onclick = () => nextResult();
+        
+        // Кнопка "Закрыть"
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&#215;';
+        closeBtn.style.cssText = `
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        `;
+        closeBtn.onmouseover = () => closeBtn.style.background = 'rgba(255,255,255,0.3)';
+        closeBtn.onmouseout = () => closeBtn.style.background = 'rgba(255,255,255,0.2)';
+        closeBtn.onclick = () => {
+            clearHighlights();
+            counter.remove();
+        };
+        
+        // Собираем элементы
+        counter.appendChild(prevBtn);
+        counter.appendChild(counterText);
+        counter.appendChild(nextBtn);
+        counter.appendChild(closeBtn);
         
         document.body.appendChild(counter);
         
-        // Автоматически скрываем через 3 секунды
-        setTimeout(() => {
-            if (counter.parentNode) {
-                counter.remove();
+        // Не скрываем автоматически, пользователь сам закроет
+    }
+    
+    // Обновить счетчик результатов
+    function updateResultCounter() {
+        const counter = document.getElementById('searchCounter');
+        if (counter) {
+            const counterText = counter.querySelector('span');
+            if (counterText) {
+                counterText.textContent = `${currentSearchIndex + 1} из ${searchResults.length}`;
             }
-        }, 3000);
+        }
     }
     
     // Очистка подсветки
@@ -238,6 +326,7 @@ function initializeSearch() {
         currentSearchIndex = (currentSearchIndex + 1) % searchResults.length;
         clearHighlights();
         highlightCurrentResult();
+        updateResultCounter();
     }
     
     // Переход к предыдущему результату
@@ -247,6 +336,7 @@ function initializeSearch() {
         currentSearchIndex = currentSearchIndex === 0 ? searchResults.length - 1 : currentSearchIndex - 1;
         clearHighlights();
         highlightCurrentResult();
+        updateResultCounter();
     }
     
     // Показать сообщение
