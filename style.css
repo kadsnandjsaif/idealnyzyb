@@ -9,13 +9,7 @@ body {
     font-family: Inter, sans-serif;
     line-height: 1;
     /* Глобальные настройки для правильного переноса слов по правилам русского языка */
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    word-break: normal;
-    overflow-wrap: break-word;
-}
+
 
 .container {
     max-width: 1920px;
@@ -1131,6 +1125,73 @@ body {
     .hero-btn {
         font-size: 16px !important;
         padding: 15px 30px !important;
+    }
+}
+
+/* Специальный адаптив для экранов меньше 500px */
+@media (max-width: 500px) {
+    .hero {
+        background: none !important;
+        margin: 15px auto !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        padding: 30px 15px !important;
+        text-align: center !important;
+        background: linear-gradient(90deg, #E3F2FD 0%, #FFF3E0 100%) !important;
+        border-radius: 20px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .hero-text {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 15px !important;
+        white-space: nowrap !important;
+        hyphens: none !important;
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+        width: auto !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 20px !important;
+        white-space: nowrap !important;
+        hyphens: none !important;
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+        width: auto !important;
+    }
+    
+    .hero-btn {
+        font-size: 14px !important;
+        padding: 12px 25px !important;
+    }
+    
+    .hero-image {
+        position: static !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        height: auto !important;
+        margin: 20px auto 0 !important;
+        order: 2 !important;
+        display: block !important;
+        background: none !important;
+    }
+    
+    .hero-image img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 280px !important;
+        border-radius: 15px !important;
     }
 }
 
@@ -4444,7 +4505,7 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+        padding: 20px;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
