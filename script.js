@@ -75,8 +75,8 @@ function initializeSearch() {
             return;
         }
         
-        if (query.length < 2) {
-            showSearchMessage('Введите минимум 2 символа', 'warning');
+        if (query.length < 1) {
+            showSearchMessage('Введите текст для поиска', 'warning');
             return;
         }
         
@@ -310,11 +310,6 @@ function initializeSearch() {
     
     // Обработчики событий
     searchInput.addEventListener('input', function() {
-        // Ограничение до 10 символов
-        if (this.value.length > 10) {
-            this.value = this.value.slice(0, 10);
-        }
-        
         // Очищаем подсветку при изменении текста
         clearHighlights();
     });
