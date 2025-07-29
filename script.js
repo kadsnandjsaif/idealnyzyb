@@ -17,6 +17,36 @@ function createUniversalNavigation() {
     }
 }
 
+// ============ АНИМАЦИЯ QUOTE SECTION ============
+function initializeQuoteAnimation() {
+    const quoteSection = document.querySelector('.quote-section');
+    const quoteCards = document.querySelectorAll('.quote-card');
+    
+    if (quoteSection && quoteCards.length > 0) {
+        // Добавляем класс loaded для fallback
+        quoteSection.classList.add('loaded');
+        
+        // Создаем Intersection Observer для анимации
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Наблюдаем за каждой карточкой
+        quoteCards.forEach((card) => {
+            observer.observe(card);
+        });
+    }
+}
+
 function createHeader() {
     const headerHTML = `
         <header class="header">
@@ -387,6 +417,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Создаем навигацию разработчика для тестирования
     createDeveloperNavigation();
+    
+    // Инициализируем анимацию для quote-section
+    initializeQuoteAnimation();
     // ============ БУРГЕР-МЕНЮ ============
     console.log('=== БУРГЕР-МЕНЮ ИНИЦИАЛИЗАЦИЯ ===');
     
