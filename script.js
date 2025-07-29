@@ -47,6 +47,231 @@ function initializeQuoteAnimation() {
     }
 }
 
+// ============ ФУНКЦИЯ ПОИСКА ============
+function initializeSearch() {
+    console.log('Инициализация функции поиска...');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.querySelector('.search-input span');
+    
+    console.log('searchInput найден:', !!searchInput);
+    console.log('searchBtn найден:', !!searchBtn);
+    
+    if (!searchInput) {
+        console.log('searchInput не найден, выход из функции');
+        return;
+    }
+    
+    // База данных ключевых слов и соответствующих страниц
+    const searchDatabase = {
+        'лечение': ['lechenie.html', 'treatment.html'],
+        'зуб': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'зубы': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'стоматолог': ['specialists.html', 'about.html'],
+        'стоматология': ['about.html', 'lechenie.html'],
+        'врач': ['specialists.html', 'about.html'],
+        'врачи': ['specialists.html', 'about.html'],
+        'цена': ['pricing.html'],
+        'цены': ['pricing.html'],
+        'стоимость': ['pricing.html'],
+        'акция': ['promotions.html'],
+        'акции': ['promotions.html'],
+        'скидка': ['promotions.html'],
+        'скидки': ['promotions.html'],
+        'отзыв': ['reviews.html'],
+        'отзывы': ['reviews.html'],
+        'клиника': ['about.html'],
+        'услуга': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'услуги': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'кариес': ['lechenie.html', 'treatment.html'],
+        'имплант': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'импланты': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'брекет': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'брекеты': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'отбеливание': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'протез': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'протезы': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'удаление': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'пломба': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'пломбы': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'чистка': ['lechenie.html', 'treatment.html', 'pricing.html'],
+        'консультация': ['about.html', 'specialists.html'],
+        'специалист': ['specialists.html'],
+        'специалисты': ['specialists.html'],
+        'о нас': ['about.html'],
+        'о клинике': ['about.html'],
+        'лечить': ['lechenie.html', 'treatment.html'],
+        'лечим': ['lechenie.html', 'treatment.html'],
+        'лечите': ['lechenie.html', 'treatment.html'],
+        'стоматологический': ['about.html', 'lechenie.html'],
+        'стоматологическая': ['about.html', 'lechenie.html'],
+        'стоматологические': ['about.html', 'lechenie.html']
+    };
+    
+    // Функция поиска
+    function performSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        console.log('Выполняется поиск для запроса:', query);
+        
+        if (query.length === 0) {
+            showSearchMessage('Введите поисковый запрос', 'info');
+            return;
+        }
+        
+        if (query.length < 2) {
+            showSearchMessage('Введите минимум 2 символа', 'warning');
+            return;
+        }
+        
+        // Поиск совпадений
+        const results = [];
+        
+        // Поиск точных совпадений (высший приоритет)
+        if (searchDatabase[query]) {
+            results.push(...searchDatabase[query]);
+        }
+        
+        // Поиск частичных совпадений (средний приоритет)
+        Object.keys(searchDatabase).forEach(keyword => {
+            if (keyword.includes(query) && query.length >= 3) {
+                searchDatabase[keyword].forEach(page => {
+                    if (!results.includes(page)) {
+                        results.push(page);
+                    }
+                });
+            }
+        });
+        
+        // Поиск по началу слова (низший приоритет)
+        Object.keys(searchDatabase).forEach(keyword => {
+            if (keyword.startsWith(query) && query.length >= 2) {
+                searchDatabase[keyword].forEach(page => {
+                    if (!results.includes(page)) {
+                        results.push(page);
+                    }
+                });
+            }
+        });
+        
+        // Удаление дубликатов
+        const uniqueResults = [...new Set(results)];
+        console.log('Найденные результаты:', uniqueResults);
+        
+        if (uniqueResults.length > 0) {
+            showSearchResults(uniqueResults, query);
+        } else {
+            showSearchMessage('По вашему запросу ничего не найдено', 'error');
+        }
+    }
+    
+    // Показать результаты поиска
+    function showSearchResults(results, query) {
+        const message = `Найдено ${results.length} страниц по запросу "${query}":`;
+        const resultList = results.map(page => {
+            const pageName = getPageDisplayName(page);
+            return `<li><a href="${page}" onclick="closeSearchModal()">${pageName}</a></li>`;
+        }).join('');
+        
+        showSearchModal(`
+            <div class="search-results">
+                <h3>${message}</h3>
+                <ul>${resultList}</ul>
+            </div>
+        `);
+    }
+    
+    // Получить отображаемое имя страницы
+    function getPageDisplayName(page) {
+        const pageNames = {
+            'lechenie.html': 'Лечение зубов',
+            'treatment.html': 'Лечение зубов',
+            'pricing.html': 'Цены на услуги',
+            'specialists.html': 'Наши специалисты',
+            'about.html': 'О клинике',
+            'promotions.html': 'Акции и скидки',
+            'reviews.html': 'Отзывы пациентов'
+        };
+        return pageNames[page] || page;
+    }
+    
+    // Показать сообщение
+    function showSearchMessage(message, type) {
+        const className = `search-message search-message-${type}`;
+        showSearchModal(`<div class="${className}">${message}</div>`);
+    }
+    
+    // Показать модальное окно с результатами
+    function showSearchModal(content) {
+        // Удаляем существующее модальное окно
+        const existingModal = document.getElementById('searchModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        const modal = document.createElement('div');
+        modal.id = 'searchModal';
+        modal.className = 'search-modal';
+        modal.innerHTML = `
+            <div class="search-modal-content">
+                <div class="search-modal-header">
+                    <h3>Результаты поиска</h3>
+                    <button class="search-modal-close" onclick="closeSearchModal()">×</button>
+                </div>
+                <div class="search-modal-body">
+                    ${content}
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Анимация появления
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    }
+    
+    // Закрыть модальное окно
+    window.closeSearchModal = function() {
+        const modal = document.getElementById('searchModal');
+        if (modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.remove();
+            }, 300);
+        }
+    };
+    
+    // Обработчики событий
+    searchInput.addEventListener('input', function() {
+        // Ограничение до 10 символов
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10);
+        }
+    });
+    
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            console.log('Поиск по Enter:', searchInput.value);
+            performSearch();
+        }
+    });
+    
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            console.log('Поиск по клику:', searchInput.value);
+            performSearch();
+        });
+    }
+    
+    // Закрытие модального окна при клике вне его
+    document.addEventListener('click', function(e) {
+        const modal = document.getElementById('searchModal');
+        if (modal && e.target === modal) {
+            closeSearchModal();
+        }
+    });
+}
+
 function createHeader() {
     const headerHTML = `
         <header class="header">
@@ -420,6 +645,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Инициализируем анимацию для quote-section
     initializeQuoteAnimation();
+    
+    // Инициализируем функцию поиска
+    initializeSearch();
     // ============ БУРГЕР-МЕНЮ ============
     console.log('=== БУРГЕР-МЕНЮ ИНИЦИАЛИЗАЦИЯ ===');
     
@@ -538,29 +766,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     
     // Функция поиска
-    function performSearch() {
-        const searchTerm = searchInput.value.trim();
-        
-        if (searchTerm) {
-            // Очищаем предыдущие выделения
-            window.find('', false, false);
-            
-            // Ищем текст
-            const found = window.find(searchTerm, false, false, true);
-            
-            if (!found) {
-                alert('Текст не найден на странице');
-            }
-        }
-    }
-    
-    // Поиск по Enter
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-    
     // Фокус на поле поиска при клике
     searchInput.addEventListener('focus', function() {
         this.select();
