@@ -64,6 +64,7 @@ function initializeSearch() {
     let currentSearchIndex = 0;
     let searchResults = [];
     let currentHighlight = null;
+    let originalNodes = new Map(); // Сохраняем оригинальные узлы
     
     // Функция поиска текста на странице
     function performSearch() {
@@ -146,22 +147,38 @@ function initializeSearch() {
         const text = result.text;
         const searchText = searchInput.value.trim();
         
-        // Создаем подсветку
+        // Сохраняем оригинальный узел, если еще не сохранен
+        if (!originalNodes.has(node)) {
+            originalNodes.set(node, {
+                parent: node.parentNode,
+                nextSibling: node.nextSibling,
+                textContent: node.textContent
+            });
+        }
+        
+        // Создаем подсветку без изменения оригинального текста
         const highlight = document.createElement('span');
         highlight.className = 'search-highlight';
-        highlight.style.backgroundColor = '#ffeb3b';
-        highlight.style.color = '#000';
-        highlight.style.padding = '2px 4px';
-        highlight.style.borderRadius = '3px';
-        highlight.style.fontWeight = 'bold';
+        highlight.style.cssText = `
+            background-color: #ffeb3b;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            box-shadow: 0 0 0 2px #ffeb3b;
+            position: relative;
+            z-index: 1000;
+        `;
         
-        // Заменяем текст на подсвеченный
+        // Создаем новый текстовый узел с подсветкой
         const regex = new RegExp(`(${searchText})`, 'gi');
-        const highlightedText = text.replace(regex, '<span class="search-highlight" style="background-color: #ffeb3b; color: #000; padding: 2px 4px; border-radius: 3px; font-weight: bold;">$1</span>');
+        const highlightedText = text.replace(regex, '<span class="search-highlight" style="background-color: #ffeb3b; color: #000; padding: 2px 4px; border-radius: 3px; font-weight: bold; box-shadow: 0 0 0 2px #ffeb3b;">$1</span>');
         
         const wrapper = document.createElement('span');
         wrapper.innerHTML = highlightedText;
+        wrapper.className = 'search-highlight-wrapper';
         
+        // Заменяем узел на подсвеченную версию
         node.parentNode.replaceChild(wrapper, node);
         
         // Прокручиваем к найденному элементу
@@ -303,14 +320,29 @@ function initializeSearch() {
     
     // Очистка подсветки
     function clearHighlights() {
-        const highlights = document.querySelectorAll('.search-highlight');
-        highlights.forEach(highlight => {
-            const parent = highlight.parentNode;
-            if (parent) {
-                parent.replaceWith(highlight.textContent);
+        // Восстанавливаем все оригинальные узлы
+        originalNodes.forEach((originalData, node) => {
+            const wrapper = document.querySelector('.search-highlight-wrapper');
+            if (wrapper && wrapper.parentNode) {
+                // Создаем новый текстовый узел с оригинальным содержимым
+                const originalTextNode = document.createTextNode(originalData.textContent);
+                
+                // Заменяем wrapper на оригинальный текстовый узел
+                wrapper.parentNode.replaceChild(originalTextNode, wrapper);
+                
+                // Обновляем ссылку на узел в результатах поиска
+                searchResults.forEach(result => {
+                    if (result.node === node) {
+                        result.node = originalTextNode;
+                    }
+                });
             }
         });
         
+        // Очищаем сохраненные оригинальные узлы
+        originalNodes.clear();
+        
+        // Удаляем счетчик
         const counter = document.getElementById('searchCounter');
         if (counter) {
             counter.remove();
