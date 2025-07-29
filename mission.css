@@ -1,0 +1,166 @@
+/* Стили для блока миссии */
+.mission-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.mission-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.mission-title {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.mission-subtitle {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 125%;
+    letter-spacing: 0%;
+    color: #666;
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Контейнер карточек */
+.mission-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Карточка миссии */
+.mission-card {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 450px;
+    max-width: 460px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 121, 255, 0.1);
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 121, 255, 0.15);
+}
+
+/* Иконка */
+.mission-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background: #0079FF;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mission-icon img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.mission-card:hover .mission-icon {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Текстовая часть */
+.mission-content {
+    flex: 1;
+}
+
+.mission-card-title {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 125%;
+    letter-spacing: 0%;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.mission-card-text {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: 0%;
+    color: #666;
+    margin: 0;
+}
+
+
+
+/* Адаптив для мобилки */
+@media (max-width: 768px) {
+    .mission-section {
+        padding: 60px 0;
+    }
+    
+    .mission-header {
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+    
+    .mission-title {
+        font-size: 36px;
+        line-height: 110%;
+    }
+    
+    .mission-subtitle {
+        font-size: 16px;
+    }
+    
+    .mission-cards {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .mission-card {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+        padding: 25px 20px;
+        gap: 15px;
+    }
+    
+    .mission-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    
+    .mission-icon img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .mission-card-title {
+        font-size: 16px;
+    }
+    
+    .mission-card-text {
+        font-size: 15px;
+    }
+} 

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger-menu.css">
+    <link rel="stylesheet" href="consultation.css">
+    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="mission.css">
+    <link rel="stylesheet" href="reviews.css">
+    <link rel="stylesheet" href="licenses.css">
+    <link rel="stylesheet" href="lechenie.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="faq-contact.css">
+    <link rel="stylesheet" href="treatment.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <title>Лечение - Стоматология Совершенство</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top"></div>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-logo">
+                        <img src="icons/logo.png" alt="Логотип">
+                    </div>
+                    
+                    <div class="header-info">
+                        <div class="header-schedule">
+                            <div class="info-label">Режим работы</div>
+                            <div class="info-content">
+                                <img src="icons/timer-start.svg" alt="Время" class="icon">
+                                <span class="phone-bold">Пн-Пт: 9:00 - 20:00</span>
+                                <div class="separator"></div>
+                                <span class="phone-bold">Сб: 9:00 - 19:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="header-phone">
+                            <div class="info-label">Телефон</div>
+                            <div class="info-content">
+                                <img src="icons/call-calling.svg" alt="Телефон" class="icon">
+                                <span class="phone-bold">8 (383) 25-00-02</span>
+                                <div class="separator"></div>
+                                <span class="phone-bold">8 (383) 95-10-49</span>
+                            </div>
+                        </div>
+                        
+                        <div class="header-whatsapp">
+                            <img src="icons/whatsapp.svg" alt="WhatsApp" class="icon">
+                            <span>Написать в Whatsapp</span>
+                        </div>
+                    </div>
+                    
+                    <div class="header-search">
+                        <div class="search-input">
+                            <img src="icons/search-normal.svg" alt="Поиск" class="search-icon">
+                            <input type="text" placeholder="Поиск по сайту" id="searchInput">
+                        </div>
+                        <span> <img src="icons/searchBTN.svg" alt="Поиск"></span>
+                    </div>
+                    
+                    <button class="header-call-btn">Заказать звонок</button>
+                    
+                    <button class="universal-burger-menu" id="burgerMenu">
+                        <div class="universal-burger-line"></div>
+                        <div class="universal-burger-line"></div>
+                        <div class="universal-burger-line"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="universal-mobile-menu" id="mobileMenu">
+        <div class="universal-mobile-menu-content">
+            <!-- Контактная информация -->
+            <div class="mobile-contact-info">
+                <!-- Режим работы -->
+                <div class="mobile-schedule">
+                    <h3 class="mobile-section-title">Режим работы</h3>
+                    <div class="mobile-schedule-content">
+                        <img src="icons/timer-start.svg" alt="Время" class="mobile-icon">
+                        <div class="mobile-schedule-text">
+                            <span class="mobile-schedule-day">Пн-Пт:</span>
+                            <span class="mobile-schedule-time">9:00 - 20:00</span>
+                            <span class="mobile-schedule-day">Сб:</span>
+                            <span class="mobile-schedule-time">9:00 - 19:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Телефон -->
+                <div class="mobile-phone">
+                    <h3 class="mobile-section-title">Телефон</h3>
+                    <div class="mobile-phone-content">
+                        <img src="icons/call-calling.svg" alt="Телефон" class="mobile-icon">
+                        <div class="mobile-phone-numbers">
+                            <span class="mobile-phone-number">8 (383) 25-00-02</span>
+                            <div class="mobile-phone-separator"></div>
+                            <span class="mobile-phone-number">8 (383) 95-10-49</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="mobile-whatsapp">
+                    <img src="icons/whatsapp.svg" alt="WhatsApp" class="mobile-whatsapp-icon">
+                </div>
+            </div>
+            
+            <!-- Кнопка заказать звонок -->
+            <button class="mobile-call-btn">Заказать звонок</button>
+            
+            <!-- Навигационное меню -->
+            <nav class="mobile-navigation">
+                <a href="about.html" class="mobile-nav-link">О нас</a>
+                <a href="lechenie.html" class="mobile-nav-link">Услуги</a>
+                <a href="pricing.html" class="mobile-nav-link">Стоимость услуг</a>
+                <a href="specialists.html" class="mobile-nav-link">Специалисты</a>
+                <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                <a href="reviews.html" class="mobile-nav-link">Отзывы</a>
+            </nav>
+            
+            <!-- Меню режима разработчика -->
+            <div class="mobile-dev-menu">
+                <h3 class="mobile-dev-title">Режим разработчика</h3>
+                <div class="mobile-dev-links">
+                    <a href="#" class="mobile-dev-link" onclick="toggleDevMode()">Включить режим разработчика</a>
+                    <a href="#" class="mobile-dev-link" onclick="showDevTools()">Инструменты разработчика</a>
+                    <a href="#" class="mobile-dev-link" onclick="clearCache()">Очистить кэш</a>
+                    <a href="#" class="mobile-dev-link" onclick="reloadPage()">Перезагрузить страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-menu">
+                <a href="about.html" class="nav-link">О нас</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link active">Услуги</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Стоимость услуг</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Специалисты</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Акции</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Отзывы</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="treatment-section">
+            <div class="wrapper">
+                <div class="treatment-content">
+                    <div class="treatment-left">
+                        <h1 class="treatment-title">Лечение кариеса<br> по доступной цене</h1>
+                        <p class="treatment-subtitle">Гарантия на лечение кариеса <br>
+                            Цена от <span style="color: #0079FF;">15 000 ₽</span></p>
+                        
+                        <div class="treatment-cards">
+                            <div class="treatment-card">
+                                <div class="treatment-card-icon">
+                                    <img src="icons/dant.svg" alt="Зуб">
+                                </div>
+                                <div class="treatment-card-content">
+                                    <div class="treatment-card-number">Более 18 лет</div>
+                                    <div class="treatment-card-text">мы дарим улыбки</div>
+                                </div>
+                            </div>
+                            
+                            <div class="treatment-card">
+                                <div class="treatment-card-icon">
+                                    <img src="icons/people.svg" alt="Люди">
+                                </div>
+                                <div class="treatment-card-content">
+                                    <div class="treatment-card-number">250 000+</div>
+                                    <div class="treatment-card-text">довольных пациентов</div>
+                                </div>
+                            </div>
+                            
+                            <div class="treatment-card">
+                                <div class="treatment-card-icon">
+                                    <img src="icons/priznanie.svg" alt="Признание">
+                                </div>
+                                <div class="treatment-card-content">
+                                    <div class="treatment-card-number">Признание</div>
+                                    <div class="treatment-card-text">на «Продокторов»</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="treatment-btn">Записаться на прием</button>
+                    </div>
+                    
+                    <div class="treatment-right">
+                        <img src="images/lechenie.png" alt="Лечение зубов" class="treatment-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" style="position: relative; z-index: -100;">
+            <div class="wrapper">
+                <h2 class="pricing-title">Делаем качественную стоматологию доступной</h2>
+                <div class="pricing-table">
+                    <div class="pricing-content" id="pricingContent">
+                        <!-- Контент будет генерироваться из JavaScript -->
+                    </div>
+                </div>
+                <div class="unique-button" style="margin-top: 50px;">
+                    <button class="unique-btn">Смотреть все цены</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="wrapper">
+                <div class="mission-header">
+                    <h2 class="mission-title">Забота о вашей улыбке – наша миссия</h2>
+                    <p class="mission-subtitle">Мы не просто врачи, а надежные партнеры, которым вы можете доверять, потому что:</p>
+                </div>
+                <div class="mission-cards">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/garant.svg" alt="Гарантия">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Предоставляем гарантию на все виды лечения</h3>
+                            <p class="mission-card-text">Стремимся не просто устранить проблему, а обеспечить вам здоровую и красивую улыбку на долгие годы</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/verificate.svg" alt="Качество">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Всегда ставим ваши интересы на первое место</h3>
+                            <p class="mission-card-text">и не навязываем ненужные процедуры.Прозрачность и честность - основа наших отношений</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/tehnologia.svg" alt="Технологии">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Инвестируем в самое современное оборудование,</h3>
+                            <p class="mission-card-text">чтобы сделать диагностику точной, лечение эффективным и комфортным.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/personal-plan.svg" alt="Индивидуальный подход">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Разрабатываем индивидуальный план лечения,</h3>
+                            <p class="mission-card-text">так как каждый пациент для нас - уникальная личность со своими потребностями и пожеланиями</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/people.svg" alt="Команда">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Внедряем в практику самые современные методики лечения,</h3>
+                            <p class="mission-card-text">постоянно повышаем свою квалификацию, участвуем в международных конференциях</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/comfort.svg" alt="Команда">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Мы работаем как единая команда,</h3>
+                            <p class="mission-card-text">поэтому всегда готовы ответить на ваши вопросы, объяснить этапы лечения и поддержать вас на каждом шагу</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="consultation" style="position: relative; z-index: 100;" >
+            <div class="wrapper">
+                <div class="consultation-content">
+                    <div class="consultation-left">
+                        <div class="consultation-form">
+                            <div class="form-content">
+                            <h3 class="consultation-title">Запишитесь на бесплатную консультацию прямо сейчас</h3>
+                            <p class="consultation-subtitle">Заполните форму и с вами свяжется <br> администратор клиники</p>
+                            
+                            <form id="consultationForm" class="form">
+                                <div class="group-form">
+                                    <div class="form-group">
+                                        <input type="text" id="name" name="name" placeholder="Ваше имя:" required>
+                                    </div>
+                                    <div class="form-group phone-group">
+                                        <input type="tel" id="phone" name="phone" placeholder="Ваш телефон:" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="consultation-btn">Записаться на прием</button>
+                                    <div class="privacy-checkbox">
+                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <label for="privacy">Я согласен с политикой<br> конфиденциальности</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    <div class="consultation-right">
+                        <img src="modal/1.png" alt="Телефон в руках">
+                        <button class="phone-screen-button">Позвонить в клинику</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок с двумя колонками текста -->
+        <section class="info-text-section">
+            <div class="wrapper">
+                <div class="info-text-content">
+                    <div class="info-text-column">
+                        <p class="info-text">
+                            Являясь всего лишь частью общей картины, сделанные на базе интернет-аналитики выводы лишь добавляют фракционных разногласий и разоблачены. Для современного мира граница обучения кадров, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для вывода текущих активов. Банальные, но неопровержимые выводы, а также сторонники тоталитаризма в науке указаны как претенденты на роль ключевых факторов. В рамках спецификации современных стандартов.
+                        </p>
+                    </div>
+                    <div class="info-text-column">
+                        <p class="info-text">
+                            Являясь всего лишь частью общей картины, сделанные на базе интернет-аналитики выводы лишь добавляют фракционных разногласий и разоблачены. Для современного мира граница обучения кадров, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для вывода текущих активов. Банальные, но неопровержимые выводы, а также сторонники тоталитаризма в науке указаны как претенденты на роль ключевых факторов. В рамках спецификации современных стандартов.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="team">
+            <div class="wrapper">
+                <div class="team-header">
+                    <h2 class="team-title">Наша команда</h2>
+                    <div class="team-nav">
+                        <button class="team-nav-btn team-prev" id="teamPrev">&lt;</button>
+                        <button class="team-nav-btn team-next" id="teamNext">&gt;</button>
+                    </div>
+                </div>
+                <div class="team-slider" id="teamSlider">
+                    <!-- Карточки будут генерироваться из JavaScript -->
+                </div>
+                <button class="team-btn">Все специалисты</button>
+            </div>
+        </section>
+        <section class="reviews">
+            <div class="wrapper">
+                <div class="reviews-header">
+                    <h2 class="reviews-title">Что говорят клиенты</h2>
+                    <div class="reviews-nav">
+                        <button class="reviews-nav-btn reviews-prev" id="reviewsPrev">&lt;</button>
+                        <button class="reviews-nav-btn reviews-next" id="reviewsNext">&gt;</button>
+                    </div>
+                </div>
+                <div class="reviews-slider" id="reviewsSlider">
+                    <!-- Карточки отзывов будут генерироваться из JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок FAQ и контактной формы -->
+        <section class="faq-contact-section">
+            <div class="wrapper">
+                <h2 class="faq-contact-title">Часто задаваемые вопросы о лечении зубов</h2>
+                
+                <div class="faq-contact-content">
+                    <!-- Левая часть - FAQ -->
+                    <div class="faq-section">
+                        <div class="faq-accordion">
+                            <div class="faq-item active">
+                                <div class="faq-question">
+                                    <span class="faq-text">Сколько стоит приём у стоматолога?</span>
+                                    <div class="faq-icon">
+                                        <span class="faq-icon-line"></span>
+                                        <span class="faq-icon-line"></span>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Стоимость приёма зависит от типа консультации и необходимого лечения. Первичный приём включает осмотр, рентген (при необходимости) и план лечения. Точные цены указаны в разделе "Услуги и цены".</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span class="faq-text">Больно ли лечить зубы?</span>
+                                    <div class="faq-icon">
+                                        <span class="faq-icon-line"></span>
+                                        <span class="faq-icon-line"></span>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Современные методы лечения зубов практически безболезненны. Мы используем качественную анестезию и современное оборудование, что делает процесс лечения комфортным для пациента.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span class="faq-text">Можно ли записаться онлайн?</span>
+                                    <div class="faq-icon">
+                                        <span class="faq-icon-line"></span>
+                                        <span class="faq-icon-line"></span>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Да, вы можете записаться на приём онлайн через наш сайт или по телефону. Также доступна запись через WhatsApp и другие мессенджеры для вашего удобства.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span class="faq-text">Нужно ли проходить профессиональную чистку зубов, если я чищу зубы дважды в день?</span>
+                                    <div class="faq-icon">
+                                        <span class="faq-icon-line"></span>
+                                        <span class="faq-icon-line"></span>
+                                    </div>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Даже при регулярной домашней гигиене рекомендуется проходить профессиональную чистку зубов 1-2 раза в год. Это помогает удалить зубной камень и налёт в труднодоступных местах, которые невозможно очистить обычной щёткой.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Правая часть - Контактная форма -->
+                    <div class="contact-form-section">
+                        <div class="contact-form-container">
+                            <h3 class="contact-form-title">Остались вопросы?</h3>
+                            <p class="contact-form-subtitle">Запишитесь на бесплатную консультацию прямо сейчас</p>
+                            <p class="contact-form-description">Заполните форму и с вами свяжется администратор клиники</p>
+                            
+                            <form class="contact-form" id="faqContactForm">
+                                <div class="form-field">
+                                    <input type="text" id="faqName" name="name" placeholder="Ваше имя:" required>
+                                </div>
+                                
+                                <div class="form-field phone-field">
+                                    
+                                    <input type="tel" id="faqPhone" name="phone" placeholder="Ваш телефон:" required>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="contact-form-btn">Записаться на прием</button>
+                                    <div class="privacy-agreement">
+                                        <input type="checkbox" id="faqPrivacy" name="privacy" required>
+                                        <label for="faqPrivacy">Я согласен с политикой конфиденциальности</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="wrapper">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <div class="footer-header">
+                            <h2 class="footer-title">Контакты</h2>
+                            <p class="footer-subtitle">Как нас найти</p>
+                        </div>
+                        
+                        <div class="footer-contacts">
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/instagram.svg" alt="Instagram" class="contact-icon">
+                                    <span>@sovershenstvo</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/call.svg" alt="Телефон" class="contact-icon">
+                                    <span>25-00-02 | 95-10-49</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/telegram.svg" alt="Telegram" class="contact-icon">
+                                    <span>@sovershenstvo</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/mail.svg" alt="Email" class="contact-icon">
+                                    <span>sovershenstvo@pochta.ru</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/whatsapp.svg" alt="WhatsApp" class="contact-icon">
+                                    <span>+7(913) 766-81-15</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/location.svg" alt="Адрес" class="contact-icon">
+                                    <span>г. Пенза<br>ул. Тепловского, 132 | ул. Глазунова, 1</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-maps">
+                            <a href="#" class="map-btn google-maps">
+                                <img src="footer-images/google-maps.svg" alt="Google Maps">
+                            </a>
+                            <a href="#" class="map-btn yandex-maps">
+                                <img src="footer-images/yandex-maps.svg" alt="Яндекс.Карты">
+                            </a>
+                            <a href="#" class="map-btn gis-maps">
+                                <img src="footer-images/2gis-maps.svg" alt="2ГИС">
+                            </a>
+                        </div>
+                        
+                        <div class="footer-navigation">
+                            <div class="footer-logo">
+                                <img src="footer-images/logo-footer.svg" alt="Логотип">
+                            </div>
+                            
+                            <div class="footer-menu">
+                                <div class="menu-column">
+                                    <a href="#" class="menu-link">Главная</a>
+                                    <a href="#" class="menu-link">О нас</a>
+                                    <a href="#" class="menu-link">Специалисты</a>
+                                    <a href="#" class="menu-link">Отзывы</a>
+                                </div>
+                                <div class="menu-column">
+                                    <a href="#" class="menu-link">Услуги</a>
+                                    <a href="#" class="menu-link">Стоимость</a>
+                                    <a href="#" class="menu-link">Акции</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-bottom">
+                            <div class="footer-links">
+                                <a href="#" class="footer-link">Политика конфиденциальности</a>
+                                <a href="#" class="footer-link">Пользовательское соглашение</a>
+                                <div class="footer-copyright">
+                                    2025. Все права защищены.
+                                </div>
+                            </div>
+                           
+                            <button class="footer-btn">Записаться на прием</button>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-right">
+                        <div class="footer-map">
+                            <img src="footer-images/maps-image.png" alt="Карта" class="map-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

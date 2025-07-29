@@ -1,0 +1,222 @@
+/* Стили для блока лечения зубов */
+.treatment-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.treatment-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Левая часть - карточки преимуществ */
+.treatment-left {
+    flex: 1 1 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.treatment-title {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 100%;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.treatment-subtitle {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 125%;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.treatment-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.treatment-card {
+    background: #fff;
+    border: 2px solid #E3F2FD;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.treatment-card-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: #0079FF;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.treatment-card-icon img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.treatment-card:hover .treatment-card-icon {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.treatment-card-content {
+    flex: 1;
+}
+
+.treatment-card-number {
+    font-family: Inter, sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 100%;
+    color: #0079FF;
+    margin-bottom: 5px;
+}
+
+.treatment-card-text {
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: #333;
+}
+
+.treatment-btn {
+    background: #0079FF;
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.treatment-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 121, 255, 0.3);
+}
+
+/* Правая часть - изображение */
+.treatment-right {
+    margin-top: 2%;
+    flex: 1 1 50%;
+    max-height: 600px;
+}
+
+.treatment-image {
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+    object-fit: cover;
+}
+@media (max-width: 1400px) {
+    .treatment-right {
+        height: 100%;
+    }
+}
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .treatment-content {
+        gap: 30px;
+        
+    }
+    
+    .treatment-title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 950px) {
+    .treatment-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .treatment-left,
+    .treatment-right {
+        flex: 1 1 100%;
+    }
+    
+    .treatment-title {
+        font-size: 36px;
+        text-align: center;
+    }
+    .treatment-right {
+        max-width: 500px;
+    }
+    .treatment-subtitle {
+        text-align: center;
+    }
+    
+    .treatment-btn {
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .treatment-section {
+        padding: 60px 0;
+    }
+    
+    .treatment-content {
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .treatment-title {
+        font-size: 32px;
+    }
+    
+    .treatment-subtitle {
+        font-size: 16px;
+    }
+    
+    .treatment-card {
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .treatment-card-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .treatment-card-icon img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .treatment-card-number {
+        font-size: 20px;
+    }
+    
+    .treatment-card-text {
+        font-size: 15px;
+    }
+} 

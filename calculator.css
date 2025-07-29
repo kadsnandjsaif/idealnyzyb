@@ -1,0 +1,168 @@
+/* Стили для блока расчета цены */
+.price-calculator-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.calculator-content {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* Левая часть - контент */
+.calculator-left {
+    flex: 1 1 60%;
+}
+
+.calculator-title {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 100%;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.calculator-subtitle {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 125%;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Табы */
+.calculator-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.calculator-tab {
+    background: #F5F5F5;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calculator-tab:hover {
+    background: #E3F2FD;
+    color: #0079FF;
+}
+
+.calculator-tab.active {
+    background: #0079FF;
+    color: white;
+}
+
+/* Контент описания */
+.calculator-description {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #333;
+    margin-bottom: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.calculator-details {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #333;
+    transition: opacity 0.3s ease;
+}
+
+/* Правая часть - изображение */
+.calculator-right {
+    flex: 1 1 40%;
+}
+
+.calculator-image {
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .calculator-content {
+        gap: 40px;
+    }
+    
+    .calculator-title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 950px) {
+    .calculator-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .calculator-left,
+    .calculator-right {
+        flex: 1 1 100%;
+    }
+    
+    .calculator-title {
+        font-size: 36px;
+        text-align: center;
+    }
+    
+    .calculator-subtitle {
+        text-align: center;
+    }
+    
+    .calculator-tabs {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .price-calculator-section {
+        padding: 60px 0;
+    }
+    
+    .calculator-content {
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .calculator-title {
+        font-size: 32px;
+    }
+    
+    .calculator-subtitle {
+        font-size: 16px;
+    }
+    
+    .calculator-tabs {
+        gap: 10px;
+    }
+    
+    .calculator-tab {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+    
+    .calculator-description,
+    .calculator-details {
+        font-size: 15px;
+        line-height: 140%;
+    }
+} 

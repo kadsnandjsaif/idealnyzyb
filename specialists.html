@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger-menu.css">
+    <link rel="stylesheet" href="consultation.css">
+    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="mission.css">
+    <link rel="stylesheet" href="reviews.css">
+    <link rel="stylesheet" href="licenses.css">
+    <link rel="stylesheet" href="lechenie.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="faq-contact.css">
+    <link rel="stylesheet" href="treatment.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <title>Специалисты - Стоматология Совершенство</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top"></div>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-logo">
+                        <img src="icons/logo.png" alt="Логотип">
+                    </div>
+                    
+                    <div class="header-info">
+                        <div class="header-schedule">
+                            <div class="info-label">Режим работы</div>
+                            <div class="info-content">
+                                <img src="icons/timer-start.svg" alt="Время" class="icon">
+                                <span class="phone-bold">Пн-Пт: 9:00 - 20:00</span>
+                                <div class="separator"></div>
+                                <span class="phone-bold">Сб: 9:00 - 19:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="header-phone">
+                            <div class="info-label">Телефон</div>
+                            <div class="info-content">
+                                <img src="icons/call-calling.svg" alt="Телефон" class="icon">
+                                <span class="phone-bold">8 (383) 25-00-02</span>
+                                <div class="separator"></div>
+                                <span class="phone-bold">8 (383) 95-10-49</span>
+                            </div>
+                        </div>
+                        
+                        <div class="header-whatsapp">
+                            <img src="icons/whatsapp.svg" alt="WhatsApp" class="icon">
+                            <span>Написать в Whatsapp</span>
+                        </div>
+                    </div>
+                    
+                    <div class="header-search">
+                        <div class="search-input">
+                            <img src="icons/search-normal.svg" alt="Поиск" class="search-icon">
+                            <input type="text" placeholder="Поиск по сайту" id="searchInput">
+                        </div>
+                        <span> <img src="icons/searchBTN.svg" alt="Поиск"></span>
+                    </div>
+                    
+                    <button class="header-call-btn">Заказать звонок</button>
+                    
+                    <button class="universal-burger-menu" id="burgerMenu">
+                        <div class="universal-burger-line"></div>
+                        <div class="universal-burger-line"></div>
+                        <div class="universal-burger-line"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="universal-mobile-menu" id="mobileMenu">
+        <div class="universal-mobile-menu-content">
+            <!-- Контактная информация -->
+            <div class="mobile-contact-info">
+                <!-- Режим работы -->
+                <div class="mobile-schedule">
+                    <h3 class="mobile-section-title">Режим работы</h3>
+                    <div class="mobile-schedule-content">
+                        <img src="icons/timer-start.svg" alt="Время" class="mobile-icon">
+                        <div class="mobile-schedule-text">
+                            <span class="mobile-schedule-day">Пн-Пт:</span>
+                            <span class="mobile-schedule-time">9:00 - 20:00</span>
+                            <span class="mobile-schedule-day">Сб:</span>
+                            <span class="mobile-schedule-time">9:00 - 19:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Телефон -->
+                <div class="mobile-phone">
+                    <h3 class="mobile-section-title">Телефон</h3>
+                    <div class="mobile-phone-content">
+                        <img src="icons/call-calling.svg" alt="Телефон" class="mobile-icon">
+                        <div class="mobile-phone-numbers">
+                            <span class="mobile-phone-number">8 (383) 25-00-02</span>
+                            <div class="mobile-phone-separator"></div>
+                            <span class="mobile-phone-number">8 (383) 95-10-49</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="mobile-whatsapp">
+                    <img src="icons/whatsapp.svg" alt="WhatsApp" class="mobile-whatsapp-icon">
+                </div>
+            </div>
+            
+            <!-- Кнопка заказать звонок -->
+            <button class="mobile-call-btn">Заказать звонок</button>
+            
+            <!-- Навигационное меню -->
+            <nav class="mobile-navigation">
+                <a href="about.html" class="mobile-nav-link">О нас</a>
+                <a href="lechenie.html" class="mobile-nav-link">Услуги</a>
+                <a href="pricing.html" class="mobile-nav-link">Стоимость услуг</a>
+                <a href="specialists.html" class="mobile-nav-link">Специалисты</a>
+                <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                <a href="reviews.html" class="mobile-nav-link">Отзывы</a>
+            </nav>
+            
+            <!-- Меню режима разработчика -->
+            <div class="mobile-dev-menu">
+                <h3 class="mobile-dev-title">Режим разработчика</h3>
+                <div class="mobile-dev-links">
+                    <a href="#" class="mobile-dev-link" onclick="toggleDevMode()">Включить режим разработчика</a>
+                    <a href="#" class="mobile-dev-link" onclick="showDevTools()">Инструменты разработчика</a>
+                    <a href="#" class="mobile-dev-link" onclick="clearCache()">Очистить кэш</a>
+                    <a href="#" class="mobile-dev-link" onclick="reloadPage()">Перезагрузить страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-menu">
+                <a href="about.html" class="nav-link">О нас</a>
+                <div class="nav-separator"></div>
+                <a href="treatment.html" class="nav-link">Лечение</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Услуги</a>
+                <div class="nav-separator"></div>
+                <a href="pricing.html" class="nav-link">Стоимость услуг</a>
+                <div class="nav-separator"></div>
+                <a href="specialists.html" class="nav-link active">Специалисты</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Акции</a>
+                <div class="nav-separator"></div>
+                <a href="#" class="nav-link">Отзывы</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Блок команды врачей -->
+        <section class="team-section">
+            <div class="wrapper">
+                <h2 class="team-title">Команда врачей</h2>
+                
+                <!-- Селектор категорий врачей -->
+                <div class="team-categories">
+                    <button class="team-category-btn active" data-category="all">Все врачи</button>
+                    <button class="team-category-btn" data-category="surgeon">Хирург-имплантолог</button>
+                    <button class="team-category-btn" data-category="therapist">Стоматолог-терапевт</button>
+                    <button class="team-category-btn" data-category="orthodontist">Ортодонт</button>
+                    <button class="team-category-btn" data-category="hygienist">Стоматолог-гигиенист</button>
+                </div>
+                
+                <!-- Навигация слайдера -->
+                <div class="team-navigation">
+                    <button class="team-nav-btn" id="teamPrev">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="team-nav-btn" id="teamNext">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Слайдер команды -->
+                <div class="team-slider-container">
+                    <div class="team-slider" id="teamSlider">
+                        <!-- Карточки врачей будут генерироваться из JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="wrapper">
+                <div class="mission-header">
+                    <h2 class="mission-title">Забота о вашей улыбке – наша миссия</h2>
+                    <p class="mission-subtitle">Мы не просто врачи, а надежные партнеры, которым вы можете доверять, потому что:</p>
+                </div>
+                <div class="mission-cards">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/garant.svg" alt="Гарантия">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Предоставляем гарантию на все виды лечения</h3>
+                            <p class="mission-card-text">Стремимся не просто устранить проблему, а обеспечить вам здоровую и красивую улыбку на долгие годы</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/verificate.svg" alt="Качество">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Всегда ставим ваши интересы на первое место</h3>
+                            <p class="mission-card-text">и не навязываем ненужные процедуры.Прозрачность и честность - основа наших отношений</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/tehnologia.svg" alt="Технологии">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Инвестируем в самое современное оборудование,</h3>
+                            <p class="mission-card-text">чтобы сделать диагностику точной, лечение эффективным и комфортным.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/personal-plan.svg" alt="Индивидуальный подход">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Разрабатываем индивидуальный план лечения,</h3>
+                            <p class="mission-card-text">так как каждый пациент для нас - уникальная личность со своими потребностями и пожеланиями</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/people.svg" alt="Команда">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Внедряем в практику самые современные методики лечения,</h3>
+                            <p class="mission-card-text">постоянно повышаем свою квалификацию, участвуем в международных конференциях</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <img src="icons/comfort.svg" alt="Команда">
+                        </div>
+                        <div class="mission-content">
+                            <h3 class="mission-card-title">Мы работаем как единая команда,</h3>
+                            <p class="mission-card-text">поэтому всегда готовы ответить на ваши вопросы, объяснить этапы лечения и поддержать вас на каждом шагу</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="consultation" style="position: relative; z-index: 100;">
+            <div class="wrapper">
+                <div class="consultation-content">
+                    <div class="consultation-left">
+                        <div class="consultation-form">
+                            <div class="form-content">
+                            <h3 class="consultation-title">Запишитесь на бесплатную консультацию прямо сейчас</h3>
+                            <p class="consultation-subtitle">Заполните форму и с вами свяжется <br> администратор клиники</p>
+                            
+                            <form id="consultationForm" class="form">
+                                <div class="group-form">
+                                    <div class="form-group">
+                                        <input type="text" id="name" name="name" placeholder="Ваше имя:" required>
+                                    </div>
+                                    <div class="form-group phone-group">
+                                        <input type="tel" id="phone" name="phone" placeholder="Ваш телефон:" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="consultation-btn">Записаться на прием</button>
+                                    <div class="privacy-checkbox">
+                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <label for="privacy">Я согласен с политикой<br> конфиденциальности</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    <div class="consultation-right">
+                        <img src="modal/1.png" alt="Телефон в руках">
+                        <button class="phone-screen-button">Позвонить в клинику</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="unique-solutions">
+            <div class="container">
+                <h2 class="unique-title">Уникальные решения клиники</h2>
+                <p class="unique-subtitle">Разработаны эксклюзивно для вашей<br> улыбки и здоровья только в нашей клинике</p>
+                
+                <div class="unique-cards">
+                    <div class="unique-card">
+                        <div class="unique-card-image">
+                            <img src="images/brekets.png" alt="Эстетическое выравнивание зубов">
+                        </div>
+                        <div class="unique-card-overlay">
+                            <h3 class="unique-card-title">Эстетическое выравнивание зубов</h3>
+                            <p class="unique-card-description">Индивидуальные эстетичные<br> ортодонтические конструкции</p>
+                        </div>
+                    </div>
+                    
+                    <div class="unique-card">
+                        <div class="unique-card-image">
+                            <img src="images/xernya.jpg" alt="Безболезненная имплантация">
+                        </div>
+                        <div class="unique-card-overlay">
+                            <h3 class="unique-card-title">Безболезненная имплантация</h3>
+                            <p class="unique-card-description">«Бескровный» (малоинвазивный) метод имплантации, преимущество которого безболезненная реабилитация в короткие сроки</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unique-button">
+                    <button class="unique-btn">Записаться на прием</button>
+                </div>
+            </div>
+        </section>
+
+       
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="wrapper">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <div class="footer-header">
+                            <h2 class="footer-title">Контакты</h2>
+                            <p class="footer-subtitle">Как нас найти</p>
+                        </div>
+                        
+                        <div class="footer-contacts">
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/instagram.svg" alt="Instagram" class="contact-icon">
+                                    <span>@sovershenstvo</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/call.svg" alt="Телефон" class="contact-icon">
+                                    <span>25-00-02 | 95-10-49</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/telegram.svg" alt="Telegram" class="contact-icon">
+                                    <span>@sovershenstvo</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/mail.svg" alt="Email" class="contact-icon">
+                                    <span>sovershenstvo@pochta.ru</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-row">
+                                <div class="contact-item">
+                                    <img src="footer-images/whatsapp.svg" alt="WhatsApp" class="contact-icon">
+                                    <span>+7(913) 766-81-15</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="footer-images/location.svg" alt="Адрес" class="contact-icon">
+                                    <span>г. Пенза<br>ул. Тепловского, 132 | ул. Глазунова, 1</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-maps">
+                            <a href="#" class="map-btn google-maps">
+                                <img src="footer-images/google-maps.svg" alt="Google Maps">
+                            </a>
+                            <a href="#" class="map-btn yandex-maps">
+                                <img src="footer-images/yandex-maps.svg" alt="Яндекс.Карты">
+                            </a>
+                            <a href="#" class="map-btn gis-maps">
+                                <img src="footer-images/2gis-maps.svg" alt="2ГИС">
+                            </a>
+                        </div>
+                        
+                        <div class="footer-navigation">
+                            <div class="footer-logo">
+                                <img src="footer-images/logo-footer.svg" alt="Логотип">
+                            </div>
+                            
+                            <div class="footer-menu">
+                                <div class="menu-column">
+                                    <a href="#" class="menu-link">Главная</a>
+                                    <a href="#" class="menu-link">О нас</a>
+                                    <a href="#" class="menu-link">Специалисты</a>
+                                    <a href="#" class="menu-link">Отзывы</a>
+                                </div>
+                                <div class="menu-column">
+                                    <a href="#" class="menu-link">Услуги</a>
+                                    <a href="#" class="menu-link">Стоимость</a>
+                                    <a href="#" class="menu-link">Акции</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-bottom">
+                            <div class="footer-links">
+                                <a href="#" class="footer-link">Политика конфиденциальности</a>
+                                <a href="#" class="footer-link">Пользовательское соглашение</a>
+                                <div class="footer-copyright">
+                                    2025. Все права защищены.
+                                </div>
+                            </div>
+                           
+                            <button class="footer-btn">Записаться на прием</button>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-right">
+                        <div class="footer-map">
+                            <img src="footer-images/maps-image.png" alt="Карта" class="map-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

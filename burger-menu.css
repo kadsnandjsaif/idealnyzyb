@@ -1,0 +1,162 @@
+/* ============ УНИВЕРСАЛЬНЫЙ БУРГЕР-МЕНЮ ============ */
+
+/* Основной контейнер бургера */
+.universal-burger-menu {
+    display: none !important;
+    flex-direction: column !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+    background: transparent !important;
+    border: none !important;
+    z-index: 9999 !important;
+    position: relative !important;
+    width: 35px !important;
+    height: 35px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    /* Принудительно убираем любые другие стили */
+    background-image: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    /* Дополнительные стили для отладки */
+    min-width: 35px !important;
+    min-height: 35px !important;
+    max-width: 35px !important;
+    max-height: 35px !important;
+}
+
+/* Линии бургера */
+.universal-burger-line {
+    width: 25px !important;
+    height: 3px !important;
+    background: #fff !important;
+    margin: 3px 0 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3) !important;
+    display: block !important;
+    /* Принудительно убираем любые другие стили */
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10000 !important; /* Максимальный z-index */
+    /* Дополнительные стили для отладки */
+    min-width: 25px !important;
+    min-height: 3px !important;
+    max-width: 25px !important;
+    max-height: 3px !important;
+}
+
+/* Темный бургер для светлых фонов */
+.universal-burger-menu.dark {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.universal-burger-menu.dark .universal-burger-line {
+    background: #333 !important;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Анимация при активации */
+.universal-burger-menu.active .universal-burger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px) !important;
+}
+
+.universal-burger-menu.active .universal-burger-line:nth-child(2) {
+    opacity: 0 !important;
+}
+
+.universal-burger-menu.active .universal-burger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px) !important;
+}
+
+/* Мобильное меню */
+.universal-mobile-menu {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    z-index: 9998 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    /* Принудительно убираем любые другие стили */
+    display: block !important;
+    transform: none !important;
+}
+
+.universal-mobile-menu.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Контент мобильного меню */
+.universal-mobile-menu-content {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 80% !important;
+    max-width: 400px !important;
+    height: 100% !important;
+    background: #333 !important;
+    padding: 40px 30px !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.3s ease !important;
+    overflow-y: auto !important;
+    color: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    z-index: 9999 !important;
+}
+
+.universal-mobile-menu.active .universal-mobile-menu-content {
+    transform: translateX(0) !important;
+}
+
+/* Медиа-запросы для отображения бургера */
+@media (max-width: 900px) {
+    .universal-burger-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        cursor: pointer !important;
+        padding: 5px !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        width: 35px !important;
+        height: 35px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        /* Дополнительные стили для отладки */
+        min-width: 35px !important;
+        min-height: 35px !important;
+        max-width: 35px !important;
+        max-height: 35px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .universal-burger-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        cursor: pointer !important;
+        padding: 5px !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        width: 35px !important;
+        height: 35px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        /* Дополнительные стили для отладки */
+        min-width: 35px !important;
+        min-height: 35px !important;
+        max-width: 35px !important;
+        max-height: 35px !important;
+    }
+} 

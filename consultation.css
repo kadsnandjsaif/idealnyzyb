@@ -1,0 +1,391 @@
+/* Стили для блока консультации */
+.consultation {
+   
+   
+   margin-top: 50px;
+    
+}
+
+/* Стили для формы консультации */
+.consultation-form {
+    display: flex;
+    background: #e3f2fd;
+    border-radius: 30px;
+    padding: 100px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: visible;
+    max-height: 550px;
+}
+
+.form-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.consultation-right {
+    position: absolute;
+    right: 50px    ;
+    bottom: 180px;
+    height: auto;
+    z-index: 0;
+    width: 800px;
+    
+}
+
+.consultation-right {
+    position: relative;
+}
+
+.consultation-right img {
+    width: 90%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* Кнопка на экране телефона */
+.phone-screen-button {
+    position: absolute;
+    top: 120%;
+    left: 45%;
+    transform: translateX(-50%);
+    background: #0079FF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 121, 255, 0.3);
+    z-index: 999999;
+}
+
+.phone-screen-button:hover {
+    background: #0056b3;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 121, 255, 0.4);
+}
+
+.consultation-title {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 100%;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.consultation-subtitle {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 125%;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 30px 30px;
+    border: 2px solid #e9ecef;
+    border-radius: 50px;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    background: white;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0079FF;
+    box-shadow: 0 0 0 3px rgba(0, 121, 255, 0.1);
+}
+
+.phone-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phone-prefix {
+    background: #0079FF;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 15px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.phone-group input {
+    flex: 1;
+}
+
+.group-form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.consultation-btn {
+    background: #0079FF;
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.consultation-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 121, 255, 0.3);
+}
+
+.privacy-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #666;
+}
+
+.privacy-checkbox input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin: 0;
+}
+
+
+/* Планшетная и мобильная адаптация */
+@media (max-width: 1500px) {
+    /* Скрываем картинку и кнопку справа */
+    .consultation-right {
+        display: none;
+    }
+    
+    .consultation-form {
+        padding: 80px 40px;
+        max-height: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .group-form {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+    
+    .consultation-title {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+    
+    .form-actions {
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .consultation-btn {
+        align-self: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .consultation-title {
+        font-size: 38px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 24px;
+    }
+    
+    .consultation-btn {
+        font-size: 17px;
+        padding: 16px 28px;
+    }
+}
+
+@media (max-width: 950px) {
+    .consultation-form {
+        padding: 60px 25px;
+    }
+    
+    .consultation-title {
+        font-size: 34px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 22px;
+    }
+    
+    .consultation-btn {
+        font-size: 16px;
+        padding: 15px 26px;
+    }
+    
+    .consultation-right {
+        right: 20px;
+        bottom: 200px;
+    }
+    
+    .consultation-right img {
+        width: 80%;
+    }
+    
+    .phone-screen-button {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .consultation {
+        padding: 60px 0;
+    }
+    
+    .consultation-form {
+        padding: 40px 20px;
+        margin: 0 20px;
+        border-radius: 20px;
+    }
+    
+    .consultation-title {
+        font-size: 30px;
+        line-height: 110%;
+        margin-bottom: 15px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .consultation-btn {
+        font-size: 15px;
+        padding: 14px 24px;
+    }
+    
+    .group-form {
+        gap: 15px;
+    }
+    
+    .form-actions {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .consultation-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .privacy-checkbox {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .consultation-form {
+        padding: 35px 15px;
+    }
+    
+    .consultation-title {
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+    
+    .consultation-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    
+    .form-group input {
+        padding: 25px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .consultation-form {
+        padding: 30px 12px;
+        margin: 0 15px;
+    }
+    
+    .consultation-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .consultation-subtitle {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .consultation-btn {
+        font-size: 13px;
+        padding: 11px 18px;
+    }
+    
+    .form-group input {
+        padding: 20px 15px;
+        font-size: 14px;
+    }
+    
+    .privacy-checkbox {
+        font-size: 12px;
+    }
+}
+
+/* Мобильная адаптация для блока консультации */

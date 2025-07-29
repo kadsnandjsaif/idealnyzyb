@@ -1,0 +1,544 @@
+/* FAQ и контактная форма */
+.faq-contact-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.faq-contact-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 60px;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.faq-contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    border-radius: 2px;
+    animation: expandWidth 1s ease-out 0.5s both;
+}
+
+.faq-contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* FAQ Секция */
+.faq-section {
+    animation: fadeInLeft 0.8s ease-out 0.2s both;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-item {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: #e3f2fd;
+}
+
+.faq-item.active {
+    border-color: #3498db;
+    box-shadow: 0 8px 30px rgba(52, 152, 219, 0.15);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.faq-question:hover {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+.faq-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.4;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.faq-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faq-icon-line {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #3498db;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.faq-icon-line:first-child {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.faq-icon-line:last-child {
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item.active .faq-icon-line:last-child {
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f8f9fa;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+}
+
+.faq-answer p {
+    padding: 0 30px 24px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #5a6c7d;
+    animation: fadeIn 0.4s ease-out 0.2s both;
+}
+
+/* Контактная форма */
+.contact-form-section {
+    animation: fadeInRight 0.8s ease-out 0.4s both;
+}
+
+.contact-form-container {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.contact-form-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-form-subtitle {
+    font-size: 1.1rem;
+    color: #e3f2fd;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-form-description {
+    font-size: 0.95rem;
+    color: #b3e5fc;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-form {
+    position: relative;
+    z-index: 1;
+}
+
+.form-field {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-field input:focus {
+    outline: none;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-field input::placeholder {
+    color: #95a5a6;
+}
+
+.phone-field {
+    position: relative;
+}
+
+.phone-field input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.phone-field input:focus {
+    outline: none;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: #ffffff;
+    color: #3498db;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-btn:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-form-btn:active {
+    transform: translateY(0);
+}
+
+.contact-form-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.privacy-agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #e3f2fd;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.privacy-agreement input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #ffffff;
+    cursor: pointer;
+}
+
+.privacy-agreement label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Уведомления */
+.faq-notification {
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    animation: slideInDown 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-notification::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    animation: shimmer 2s infinite;
+}
+
+.faq-notification-error {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+    border-left: 4px solid #ffffff;
+}
+
+.faq-notification-success {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(39, 174, 96, 0.3);
+    border-left: 4px solid #ffffff;
+}
+
+.faq-notification-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-notification-icon {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.faq-notification-text {
+    flex: 1;
+}
+
+.faq-notification-text strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80px;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .faq-contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .faq-contact-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-contact-section {
+        padding: 60px 0;
+    }
+    
+    .faq-contact-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+    
+    .contact-form-container {
+        padding: 30px 20px;
+    }
+    
+    .faq-question {
+        padding: 20px 20px;
+    }
+    
+    .faq-answer p {
+        padding: 0 20px 20px;
+    }
+    
+    .faq-text {
+        font-size: 1rem;
+    }
+    
+    .faq-notification {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .faq-notification-content {
+        gap: 12px;
+    }
+    
+    .faq-notification-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-contact-title {
+        font-size: 1.5rem;
+    }
+    
+    .contact-form-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-actions {
+        gap: 15px;
+    }
+    
+    .privacy-agreement {
+        font-size: 0.85rem;
+    }
+    
+    .faq-notification {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+    }
+} 
