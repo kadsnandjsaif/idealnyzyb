@@ -47,9 +47,9 @@ function initializeQuoteAnimation() {
     }
 }
 
-// ============ ФУНКЦИЯ ПОИСКА ============
+// ============ ФУНКЦИЯ ПОИСКА ПО ТЕКСТУ НА СТРАНИЦЕ ============
 function initializeSearch() {
-    console.log('Инициализация функции поиска...');
+    console.log('Инициализация функции поиска по тексту на странице...');
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.querySelector('.search-input span');
     
@@ -61,59 +61,17 @@ function initializeSearch() {
         return;
     }
     
-    // База данных ключевых слов и соответствующих страниц
-    const searchDatabase = {
-        'лечение': ['lechenie.html', 'treatment.html'],
-        'зуб': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'зубы': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'стоматолог': ['specialists.html', 'about.html'],
-        'стоматология': ['about.html', 'lechenie.html'],
-        'врач': ['specialists.html', 'about.html'],
-        'врачи': ['specialists.html', 'about.html'],
-        'цена': ['pricing.html'],
-        'цены': ['pricing.html'],
-        'стоимость': ['pricing.html'],
-        'акция': ['promotions.html'],
-        'акции': ['promotions.html'],
-        'скидка': ['promotions.html'],
-        'скидки': ['promotions.html'],
-        'отзыв': ['reviews.html'],
-        'отзывы': ['reviews.html'],
-        'клиника': ['about.html'],
-        'услуга': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'услуги': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'кариес': ['lechenie.html', 'treatment.html'],
-        'имплант': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'импланты': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'брекет': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'брекеты': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'отбеливание': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'протез': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'протезы': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'удаление': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'пломба': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'пломбы': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'чистка': ['lechenie.html', 'treatment.html', 'pricing.html'],
-        'консультация': ['about.html', 'specialists.html'],
-        'специалист': ['specialists.html'],
-        'специалисты': ['specialists.html'],
-        'о нас': ['about.html'],
-        'о клинике': ['about.html'],
-        'лечить': ['lechenie.html', 'treatment.html'],
-        'лечим': ['lechenie.html', 'treatment.html'],
-        'лечите': ['lechenie.html', 'treatment.html'],
-        'стоматологический': ['about.html', 'lechenie.html'],
-        'стоматологическая': ['about.html', 'lechenie.html'],
-        'стоматологические': ['about.html', 'lechenie.html']
-    };
+    let currentSearchIndex = 0;
+    let searchResults = [];
+    let currentHighlight = null;
     
-    // Функция поиска
+    // Функция поиска текста на странице
     function performSearch() {
-        const query = searchInput.value.trim().toLowerCase();
-        console.log('Выполняется поиск для запроса:', query);
+        const query = searchInput.value.trim();
+        console.log('Выполняется поиск текста на странице:', query);
         
         if (query.length === 0) {
-            showSearchMessage('Введите поисковый запрос', 'info');
+            showSearchMessage('Введите текст для поиска', 'info');
             return;
         }
         
@@ -122,124 +80,233 @@ function initializeSearch() {
             return;
         }
         
-        // Поиск совпадений
-        const results = [];
+        // Очищаем предыдущие выделения
+        clearHighlights();
         
-        // Поиск точных совпадений (высший приоритет)
-        if (searchDatabase[query]) {
-            results.push(...searchDatabase[query]);
-        }
+        // Ищем все вхождения текста на странице
+        searchResults = findTextOnPage(query);
         
-        // Поиск частичных совпадений (средний приоритет)
-        Object.keys(searchDatabase).forEach(keyword => {
-            if (keyword.includes(query) && query.length >= 3) {
-                searchDatabase[keyword].forEach(page => {
-                    if (!results.includes(page)) {
-                        results.push(page);
-                    }
-                });
-            }
-        });
-        
-        // Поиск по началу слова (низший приоритет)
-        Object.keys(searchDatabase).forEach(keyword => {
-            if (keyword.startsWith(query) && query.length >= 2) {
-                searchDatabase[keyword].forEach(page => {
-                    if (!results.includes(page)) {
-                        results.push(page);
-                    }
-                });
-            }
-        });
-        
-        // Удаление дубликатов
-        const uniqueResults = [...new Set(results)];
-        console.log('Найденные результаты:', uniqueResults);
-        
-        if (uniqueResults.length > 0) {
-            showSearchResults(uniqueResults, query);
+        if (searchResults.length > 0) {
+            currentSearchIndex = 0;
+            highlightCurrentResult();
+            showSearchMessage(`Найдено ${searchResults.length} вхождений`, 'success');
         } else {
-            showSearchMessage('По вашему запросу ничего не найдено', 'error');
+            showSearchMessage('Текст не найден на странице', 'error');
         }
     }
     
-    // Показать результаты поиска
-    function showSearchResults(results, query) {
-        const message = `Найдено ${results.length} страниц по запросу "${query}":`;
-        const resultList = results.map(page => {
-            const pageName = getPageDisplayName(page);
-            return `<li><a href="${page}" onclick="closeSearchModal()">${pageName}</a></li>`;
-        }).join('');
+    // Функция поиска текста на странице
+    function findTextOnPage(searchText) {
+        const results = [];
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: function(node) {
+                    // Исключаем скрытые элементы и элементы формы
+                    const parent = node.parentElement;
+                    if (!parent || 
+                        parent.style.display === 'none' || 
+                        parent.style.visibility === 'hidden' ||
+                        parent.tagName === 'SCRIPT' ||
+                        parent.tagName === 'STYLE' ||
+                        parent.tagName === 'INPUT' ||
+                        parent.tagName === 'TEXTAREA') {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
         
-        showSearchModal(`
-            <div class="search-results">
-                <h3>${message}</h3>
-                <ul>${resultList}</ul>
-            </div>
-        `);
+        let node;
+        while (node = walker.nextNode()) {
+            const text = node.textContent;
+            const lowerText = text.toLowerCase();
+            const lowerSearch = searchText.toLowerCase();
+            
+            if (lowerText.includes(lowerSearch)) {
+                results.push({
+                    node: node,
+                    text: text,
+                    index: lowerText.indexOf(lowerSearch)
+                });
+            }
+        }
+        
+        return results;
     }
     
-    // Получить отображаемое имя страницы
-    function getPageDisplayName(page) {
-        const pageNames = {
-            'lechenie.html': 'Лечение зубов',
-            'treatment.html': 'Лечение зубов',
-            'pricing.html': 'Цены на услуги',
-            'specialists.html': 'Наши специалисты',
-            'about.html': 'О клинике',
-            'promotions.html': 'Акции и скидки',
-            'reviews.html': 'Отзывы пациентов'
-        };
-        return pageNames[page] || page;
+    // Подсветка текущего результата
+    function highlightCurrentResult() {
+        if (searchResults.length === 0) return;
+        
+        const result = searchResults[currentSearchIndex];
+        const node = result.node;
+        const text = result.text;
+        const searchText = searchInput.value.trim();
+        
+        // Создаем подсветку
+        const highlight = document.createElement('span');
+        highlight.className = 'search-highlight';
+        highlight.style.backgroundColor = '#ffeb3b';
+        highlight.style.color = '#000';
+        highlight.style.padding = '2px 4px';
+        highlight.style.borderRadius = '3px';
+        highlight.style.fontWeight = 'bold';
+        
+        // Заменяем текст на подсвеченный
+        const regex = new RegExp(`(${searchText})`, 'gi');
+        const highlightedText = text.replace(regex, '<span class="search-highlight" style="background-color: #ffeb3b; color: #000; padding: 2px 4px; border-radius: 3px; font-weight: bold;">$1</span>');
+        
+        const wrapper = document.createElement('span');
+        wrapper.innerHTML = highlightedText;
+        
+        node.parentNode.replaceChild(wrapper, node);
+        
+        // Прокручиваем к найденному элементу
+        wrapper.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+        
+        currentHighlight = wrapper;
+        
+        // Показываем счетчик результатов
+        showResultCounter();
+    }
+    
+    // Показать счетчик результатов
+    function showResultCounter() {
+        if (searchResults.length <= 1) return;
+        
+        // Удаляем существующий счетчик
+        const existingCounter = document.getElementById('searchCounter');
+        if (existingCounter) {
+            existingCounter.remove();
+        }
+        
+        const counter = document.createElement('div');
+        counter.id = 'searchCounter';
+        counter.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10001;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        `;
+        counter.textContent = `${currentSearchIndex + 1} из ${searchResults.length}`;
+        
+        document.body.appendChild(counter);
+        
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+            if (counter.parentNode) {
+                counter.remove();
+            }
+        }, 3000);
+    }
+    
+    // Очистка подсветки
+    function clearHighlights() {
+        const highlights = document.querySelectorAll('.search-highlight');
+        highlights.forEach(highlight => {
+            const parent = highlight.parentNode;
+            if (parent) {
+                parent.replaceWith(highlight.textContent);
+            }
+        });
+        
+        const counter = document.getElementById('searchCounter');
+        if (counter) {
+            counter.remove();
+        }
+        
+        currentHighlight = null;
+    }
+    
+    // Переход к следующему результату
+    function nextResult() {
+        if (searchResults.length === 0) return;
+        
+        currentSearchIndex = (currentSearchIndex + 1) % searchResults.length;
+        clearHighlights();
+        highlightCurrentResult();
+    }
+    
+    // Переход к предыдущему результату
+    function previousResult() {
+        if (searchResults.length === 0) return;
+        
+        currentSearchIndex = currentSearchIndex === 0 ? searchResults.length - 1 : currentSearchIndex - 1;
+        clearHighlights();
+        highlightCurrentResult();
     }
     
     // Показать сообщение
     function showSearchMessage(message, type) {
-        const className = `search-message search-message-${type}`;
-        showSearchModal(`<div class="${className}">${message}</div>`);
-    }
-    
-    // Показать модальное окно с результатами
-    function showSearchModal(content) {
-        // Удаляем существующее модальное окно
-        const existingModal = document.getElementById('searchModal');
-        if (existingModal) {
-            existingModal.remove();
+        // Удаляем существующее сообщение
+        const existingMessage = document.getElementById('searchMessage');
+        if (existingMessage) {
+            existingMessage.remove();
         }
         
-        const modal = document.createElement('div');
-        modal.id = 'searchModal';
-        modal.className = 'search-modal';
-        modal.innerHTML = `
-            <div class="search-modal-content">
-                <div class="search-modal-header">
-                    <h3>Результаты поиска</h3>
-                    <button class="search-modal-close" onclick="closeSearchModal()">×</button>
-                </div>
-                <div class="search-modal-body">
-                    ${content}
-                </div>
-            </div>
+        const messageDiv = document.createElement('div');
+        messageDiv.id = 'searchMessage';
+        messageDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            z-index: 10001;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
         `;
         
-        document.body.appendChild(modal);
-        
-        // Анимация появления
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
-    }
-    
-    // Закрыть модальное окно
-    window.closeSearchModal = function() {
-        const modal = document.getElementById('searchModal');
-        if (modal) {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
+        // Стили в зависимости от типа сообщения
+        switch(type) {
+            case 'success':
+                messageDiv.style.background = '#4caf50';
+                messageDiv.style.color = 'white';
+                break;
+            case 'error':
+                messageDiv.style.background = '#f44336';
+                messageDiv.style.color = 'white';
+                break;
+            case 'warning':
+                messageDiv.style.background = '#ff9800';
+                messageDiv.style.color = 'white';
+                break;
+            default:
+                messageDiv.style.background = '#2196f3';
+                messageDiv.style.color = 'white';
         }
-    };
+        
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+        
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.style.opacity = '0';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.remove();
+                    }
+                }, 300);
+            }
+        }, 3000);
+    }
     
     // Обработчики событий
     searchInput.addEventListener('input', function() {
@@ -247,6 +314,9 @@ function initializeSearch() {
         if (this.value.length > 10) {
             this.value = this.value.slice(0, 10);
         }
+        
+        // Очищаем подсветку при изменении текста
+        clearHighlights();
     });
     
     searchInput.addEventListener('keypress', function(e) {
@@ -256,18 +326,31 @@ function initializeSearch() {
         }
     });
     
+    // Обработчик для кнопки поиска
     if (searchBtn) {
         searchBtn.addEventListener('click', function() {
-            console.log('Поиск по клику:', searchInput.value);
+            console.log('Поиск по клику на кнопку:', searchInput.value);
             performSearch();
         });
     }
     
-    // Закрытие модального окна при клике вне его
+    // Горячие клавиши для навигации по результатам
+    document.addEventListener('keydown', function(e) {
+        if (searchResults.length > 0) {
+            if (e.key === 'F3' || (e.ctrlKey && e.key === 'g')) {
+                e.preventDefault();
+                nextResult();
+            } else if (e.shiftKey && e.key === 'F3' || (e.ctrlKey && e.shiftKey && e.key === 'g')) {
+                e.preventDefault();
+                previousResult();
+            }
+        }
+    });
+    
+    // Очистка при клике вне поля поиска
     document.addEventListener('click', function(e) {
-        const modal = document.getElementById('searchModal');
-        if (modal && e.target === modal) {
-            closeSearchModal();
+        if (!searchInput.contains(e.target) && !searchBtn.contains(e.target)) {
+            // Не очищаем сразу, даем пользователю время на навигацию
         }
     });
 }
